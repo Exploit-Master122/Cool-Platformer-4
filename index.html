@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cool Platformer 4</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0b0c2a; /* Dark blue */
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    #fullscreen-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+    }
+    #fullscreen-btn:hover {
+      background-color: rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<button id="fullscreen-btn">Fullscreen (Reccomended)</button>
+
+<iframe id="turbowarp" src="https://turbowarp.org/1136372285/fullscreen" allowfullscreen></iframe>
+
+<!-- Load tsParticles -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+  tsParticles.load("particles-js", {
+    fullScreen: false,
+    background: {
+      color: "#0b0c2a"
+    },
+    particles: {
+      number: {
+        value: 60,
+        density: { enable: true, area: 800 }
+      },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
+      opacity: {
+        value: 0.5,
+        random: true
+      },
+      size: {
+        value: { min: 1, max: 4 }
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none",
+        outModes: { default: "bounce" }
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "repulse" }
+      },
+      modes: {
+        repulse: { distance: 100 }
+      }
+    }
+  });
+
+  const iframe = document.getElementById('turbowarp');
+  const btn = document.getElementById('fullscreen-btn');
+
+  btn.addEventListener('click', () => {
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) {
+      iframe.msRequestFullscreen();
+    }
+  });
+</script>
+
+</body>
+</html>
